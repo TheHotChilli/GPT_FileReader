@@ -1,3 +1,5 @@
+var delayTime = 1000;
+
 function createButton() {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
@@ -167,7 +169,7 @@ function removeButton() {
 
 console.log("[GPT-File-Reader] Starting Script");
 // Call createButton when the content script is injected for the first time
-createButton();
+setTimeout(createButton, delayTime);
 // Listen for navigation events
 window.addEventListener('popstate', handleNavigation);
 window.addEventListener('pushstate', handleNavigation);
@@ -190,5 +192,38 @@ document.addEventListener('click', function(event) {
     setTimeout(createButton, 100);
   }
 });
+
+// Define the coordinates of the desired display area
+var areaLeft = 0;
+var areaTop = 0;
+var areaWidth = 250;
+var areaHeight = 800;
+
+// Function to check if the mouse click is within the desired area
+function isClickWithinArea(event) {
+  var mouseX = event.clientX;
+  var mouseY = event.clientY;
+  
+  if (mouseX >= areaLeft && mouseX <= areaLeft + areaWidth && mouseY >= areaTop && mouseY <= areaTop + areaHeight) {
+    return true;
+  }
+  
+  return false;
+}
+
+// Function to be executed when the mouse clicks within the area
+function handleClick() {
+  setTimeout(createButton, delayTime);
+}
+
+// Event listener for the click event on the document
+document.addEventListener("click", function(event) {
+  if (isClickWithinArea(event)) {
+    handleClick();
+  }
+});
+
+
+
 
 
