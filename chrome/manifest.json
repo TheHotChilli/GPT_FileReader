@@ -1,0 +1,21 @@
+{
+   "manifest_version": 3,
+   "name": "ChatGPT File Upload",
+   "version": "1.0.0",
+   "description": "Extension that allows uploading files in chunks to the ChatGPT website.",
+   "permissions": [ "https://chat.openai.com/*", "http://chat.openai.com/*" ],
+   "content_scripts": [ 
+      {
+      "js": [ "content.js", 
+              "pdf.min.js", "pdf.worker.min.js", 
+              "mammoth.browser.min.js", 
+              "xlsx.min.js" ],
+      "matches": [ "*://chat.openai.com/*" ]
+      } 
+   ],
+   "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+   }
+}
